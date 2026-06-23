@@ -1,0 +1,108 @@
+
+/* Base variables (light/dark handled via :root and body.dark-mode) */
+:root{
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --muted-color: #666666;
+    --accent: #f59e6f;
+    --card-bg: #f5efe6; /* beige boxes */
+    --profile-bg: #e4c6a9; /* light brown for Reham box */
+    --heading-color: #b07a4a; /* light brown for headings */
+    --education-bg: #f8efe3; /* light beige for education box */
+    --shadow: rgba(0,0,0,0.08);
+}
+
+body.dark-mode{
+    --bg-color: #0f1113;
+    --text-color: #e6e6e6;
+    --muted-color: #bdbdbd;
+    --accent: #ffb07a;
+    --card-bg: #161719;
+    --shadow: rgba(0,0,0,0.6);
+}
+
+/* Page basics */
+*{box-sizing: border-box}
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color .25s ease, color .25s ease;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding-top: 76px; /* space for fixed header */
+}
+
+.container{max-width: 1000px;margin: 20px auto;padding: 0 18px}
+
+/* Header / top bar */
+.box.title{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 18px;
+    background: linear-gradient(90deg, rgba(245,158,78,0.12), rgba(255,255,255,0.02));
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+.site-title{font-size: 20px; font-weight:700; color:var(--text-color)}
+
+.menu-toggle{display: inline-flex; flex-direction: column; gap:4px; width:44px; height:36px; align-items:center; justify-content:center; background:transparent; border:0; cursor:pointer}
+.menu-toggle span{display:block; width:22px; height:2px; background:var(--text-color); border-radius:2px}
+
+/* Navigation */
+.nav-menu{display:flex; align-items:center}
+.nav-menu ul{list-style:none;margin:0;padding:0;display:flex;gap:14px}
+.nav-menu a{color:var(--text-color); text-decoration:none; padding:8px 12px; border-radius:8px; background: transparent; font-weight:600}
+.nav-menu a:hover{background:var(--card-bg)}
+
+/* Mobile: hide nav by default, show when open */
+@media (max-width:800px){
+    .nav-menu{position:fixed; top:76px; left:0; right:0; background:var(--bg-color); flex-direction:column; padding:16px; display:none}
+    .nav-menu.open{display:flex}
+    .nav-menu ul{flex-direction:column; gap:8px}
+}
+
+/* Profile box */
+.box-profile{background:var(--profile-bg); padding:28px; border-radius:12px; box-shadow:0 6px 20px var(--shadow); text-align:center}
+.profile-img{width:160px; height:160px; object-fit:cover; border-radius:50%; border:4px solid rgba(255,255,255,0.12); display:block; margin:0 auto 14px}
+.box-profile h1{margin:0 0 8px; color:#000}
+.box-profile p{line-height:1.6;color:var(--muted-color)}
+
+/* Projects, links etc */
+.project, .links, .languages, .courses, .experience{background:var(--card-bg); padding:16px; border-radius:10px; box-shadow:0 4px 12px var(--shadow); margin-top:18px}
+
+.education{background:var(--education-bg); padding:16px; border-radius:10px; box-shadow:0 4px 12px var(--shadow); margin-top:18px}
+
+/* Headings inside boxes use the light-brown heading color */
+.project h4,
+.links h5,
+.languages h4,
+.courses h4,
+.experience h3,
+.education h2,
+.box-profile h1{
+    color: var(--heading-color);
+}
+
+/* In dark mode adjust profile box color */
+body.dark-mode{
+    --profile-bg: #3a2b20;
+    --education-bg: #1f3a5f;
+    --heading-color: #e0b58a;
+}
+
+.themeToggle-btn{background:var(--accent); color:#fff; border:0; padding:8px 14px; border-radius:8px; cursor:pointer}
+.themeToggle-btn[aria-pressed="true"]{opacity:0.95}
+
+/* Utility */
+.button{display:flex; justify-content:center; margin:18px 0}
+
+ 
